@@ -1,8 +1,21 @@
 import heroImg from "../assets/hero.png";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
-
+import { useState } from "react";
 const HeroSection = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setError("");
+      navigate("/register", { state: { email } });
+    } else {
+      setError("Please enter a valid email address.");
+    }
+  };
   return (
     <div className="relative w-full h-screen">
       {/* Background Image inside Hero Text */}
@@ -87,17 +100,21 @@ const HeroSection = () => {
               <input
                 type="email"
                 placeholder="Email address"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
                 className="w-full md:flex-1 px-6 py-3 rounded  text-white  bg-black placeholder-white focus:outline-none opacity-50 border"
                 style={{ fontFamily: "Helvetica Neue, Arial, sans-serif" }}
               />
               <button
                 type="button"
+                onClick={handleGetStarted}
                 className="flex items-center justify-center gap-2 font-bold text-white bg-red-600 hover:bg-red-500  rounded text-lg px-6 py-3 transition"
               >
                 Get Started
                 <FiChevronRight size={24} />
               </button>
             </div>
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
           </div>
         </div>
       </div>
