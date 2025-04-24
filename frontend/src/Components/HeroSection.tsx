@@ -105,6 +105,8 @@ const HeroSection = () => {
                 className="w-full md:flex-1 px-6 py-3 rounded  text-white  bg-black placeholder-white focus:outline-none opacity-50 border"
                 style={{ fontFamily: "Helvetica Neue, Arial, sans-serif" }}
               />
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+         
               <button
                 type="button"
                 onClick={handleGetStarted}
@@ -114,7 +116,7 @@ const HeroSection = () => {
                 <FiChevronRight size={24} />
               </button>
             </div>
-            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+            {error && <p className="text-red-500 text-sm">{error}</p>}
           </div>
         </div>
       </div>
