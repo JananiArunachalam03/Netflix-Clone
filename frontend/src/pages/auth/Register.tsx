@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/netflix-logo.png";
-import Home from "../../pages/Home";
 
 interface RegisterNavigationState {
   email: string;
@@ -12,15 +11,29 @@ const Register = () => {
   const navigate = useNavigate();
   const email = (location.state as RegisterNavigationState)?.email || "";
 
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
+  const isValidPassword = (password: string) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+    return regex.test(password);
+  };
+
   const handleRegister = (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (!username.trim()) {
+      setError("Username is required.");
+      return;
+    }
     if (!password || !confirmPassword) {
       setError("Password fields cannot be empty.");
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setError("Password must be 6-20 characters and include uppercase, lowercase, number, and special character.");
       return;
     }
     if (password !== confirmPassword) {
@@ -29,8 +42,6 @@ const Register = () => {
     }
 
     setError("");
-
-    
     navigate("/home");
   };
 
@@ -41,7 +52,7 @@ const Register = () => {
         <img src={logo} alt="Netflix Logo" className="w-36 h-auto" />
         <button
           onClick={() => navigate('/login')}
-          className="text-black font-medium hover:text-underline"
+          className="text-black font-medium hover:underline"
         >
           Sign In
         </button>
@@ -57,67 +68,68 @@ const Register = () => {
         </p>
 
         <form onSubmit={handleRegister} className="w-full">
-          {/* Email Display Styled Like Example */}
-          <div className="mb-4 text-left">
+          {/* Email Display */}
+          <div className="mb-4">
             <p className="text-sm text-gray-600">Email</p>
             <span className="text-md font-medium text-black">{email}</span>
           </div>
+          {/* Username Field */}
+          <div className="mb-4">
+            <p className="text-sm text-gray-600">Username</p>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full h-12 px-4 bg-gray-100 text-black rounded border border-gray-300 focus:outline-none focus:border-gray-500"
+            />
+          </div>
+
+          
 
           {/* Password Field */}
-          <div className="mb-4 relative">
+          <div className="mb-4">
+            <p className="text-sm text-gray-600">Password</p>
             <input
               type="password"
-              id="password"
-              placeholder=" "
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`peer w-full h-16 px-6 py-3 border-[1.5px] rounded bg-gray-100 text-black text-lg placeholder-transparent focus:outline-none leading-tight${
+              className={`w-full h-12 px-4 bg-gray-100 text-black rounded border-2 ${
                 password && confirmPassword
                   ? password === confirmPassword
-                    ? 'border-green-500'
-                    : 'border-red-500'
-                  : 'border-gray-300'
-              }`}
+                    ? "border-green-500"
+                    : "border-red-500"
+                  : "border-gray-400"
+              } focus:outline-none focus:border-gray-500`}
             />
-            <label
-              htmlFor="password"
-              className="absolute left-6 top-4 text-black transition-all duration-300 ease-in-out peer-focus:top-2 peer-focus:left-4 peer-focus:text-gray peer-placeholder-shown:top-4 peer-placeholder-shown:left-6 peer-placeholder-shown:text-gray-500 text-sm"
-            >
-              Password
-            </label>
           </div>
 
           {/* Confirm Password Field */}
-          <div className="mb-4 relative">
+          <div className="mb-4">
+            <p className="text-sm text-gray-600">Re-enter password</p>
             <input
               type="password"
-              id="confirmPassword"
-              placeholder=" "
+              placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`peer w-full h-16 px-6 py-4 border-[1.5px] rounded bg-gray-100 text-black text-lg placeholder-transparent focus:outline-none leading-tight${
+              className={`w-full h-12 px-4 bg-gray-100 text-black rounded border-2 ${
                 password && confirmPassword
                   ? password === confirmPassword
-                    ? 'border-green-500'
-                    : 'border-red-500'
-                  : 'border-gray-300'
-              }`}
+                    ? "border-green-500"
+                    : "border-red-500"
+                  : "border-gray-400"
+              } focus:outline-none focus:border-gray-500`}
             />
-            <label
-              htmlFor="confirmPassword"
-              className="absolute left-6 top-4 text-black transition-all duration-300 ease-in-out peer-focus:top-2 peer-focus:left-4 peer-focus:text-gray peer-placeholder-shown:top-4 peer-placeholder-shown:left-6 peer-placeholder-shown:text-gray-500 text-sm"
-            >
-              Re-enter password
-            </label>
           </div>
 
-          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <button
             type="submit"
             className="w-full text-white font-medium bg-red-600 hover:bg-red-500 rounded px-4 py-2 transition mt-4"
           >
-            Next
+            Submit
           </button>
         </form>
       </div>

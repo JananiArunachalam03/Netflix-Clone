@@ -11,7 +11,7 @@ const HeroSection = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setError("");
-      navigate("/register", { state: { email } });
+      navigate("/signup", { state: { email } });
     } else {
       setError("Please enter a valid email address.");
     }
@@ -105,7 +105,7 @@ const HeroSection = () => {
                 className="w-full md:flex-1 px-6 py-3 rounded  text-white  bg-black placeholder-white focus:outline-none opacity-50 border"
                 style={{ fontFamily: "Helvetica Neue, Arial, sans-serif" }}
               />
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+              
          
               <button
                 type="button"
@@ -115,6 +115,8 @@ const HeroSection = () => {
                 Get Started
                 <FiChevronRight size={24} />
               </button>
+
+            
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
           </div>
