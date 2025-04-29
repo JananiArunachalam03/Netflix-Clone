@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.faq-container{
+    @apply max-w-7xl mx-auto text-white px-4 py-10;
+}
+.faq-title{
+    @apply text-3xl font-bold mb-6 text-left;
+}
+.faq-key{
+    @apply mb-2 bg-neutral-800 rounded;
+}
+.faq-button{
+    @apply w-full flex justify-between items-center px-6 py-5 text-lg font-medium focus:outline-none;
+}
