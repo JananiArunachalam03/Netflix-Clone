@@ -5,8 +5,6 @@ function Footer() {
   return (
     <>
       <div className="py-10 px-[10%]">
-        {/* Email Section Centered */}
-        {/* Email Section Centered */}
         <div className="flex flex-col items-center text-center">
           <p className="max-w-xl pb-4">
             Ready to watch? Enter your email to create or restart your

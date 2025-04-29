@@ -14,3 +14,6 @@
 .faq-button{
     @apply w-full flex justify-between items-center px-6 py-5 text-lg font-medium focus:outline-none;
 }
+.faq-active-index{
+    @apply px-6 py-5 text-xl leading-relaxed border-t-2 border-t-black text-neutral-200;
+}

@@ -1,11 +1,12 @@
 import React from "react";
 import { Plus, X } from "lucide-react";
 import faqData from "./FAQItem";
-import useFAQAccordion from "./useFAQAccordian"; 
+import useFAQAccordion from "../useFAQAccordion"; 
 import { FAQItem } from "./IFAQItem";
 
 const FAQAccordion: React.FC = () => {
   const { activeIndex, handleButtonClick } = useFAQAccordion(); 
+
   return (
     <div className="faq-container">
       <h2 className="faq-title">Frequently Asked Questions</h2>
