@@ -1,17 +1,17 @@
 import React from "react";
 import { FiChevronRight } from "react-icons/fi";
-
+import "../Footer/styleFooter.css";
 function Footer() {
   return (
     <>
-      <div className="py-10 px-[10%]">
-        <div className="flex flex-col items-center text-center">
-          <p className="max-w-xl pb-4">
+      <div className="footer-container">
+        <div className="footer-col">
+          <p className="footer-content">
             Ready to watch? Enter your email to create or restart your
             membership.
           </p>
 
-          <div className="w-full flex justify-center">
+          <div className="footer-title">
             <div className="flex flex-col md:flex-row items-center gap-3 px-4 w-full max-w-2xl">
               <input
                 type="email"
@@ -23,7 +23,7 @@ function Footer() {
                 type="button"
                 className="flex items-center justify-center gap-2 font-bold text-white bg-red-600 hover:bg-red-500 rounded text-lg px-6 py-3 transition"
               >
-                getStarted
+                Get Started
                 <FiChevronRight size={24} />
               </button>
             </div>

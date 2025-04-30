@@ -18,7 +18,7 @@ const HeroSection = () => {
   };
   return (
     <div className="relative w-full h-screen">
-      {/* Background Image inside Hero Text */}
+      
 
       {/* Content */}
       <div className="relative z-2 px-12 md:px-10 py-4 flex flex-col h-full space-y-6">

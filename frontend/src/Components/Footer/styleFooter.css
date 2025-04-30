@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer-container{
+    @apply px-[10%] py-[10%]; 
+}
+.footer-col{
+    @apply flex-col items-center text-center;
+}
+.footer-content{
+    @apply max-w-xl mx-auto pb-4;
+}
+.flex-container {
+    @apply flex w-full justify-center;
+  }
+  
+.footer-form-align{
+        @apply flex-col md:flex-row items-center gap-3 px-4 w-full max-w-2xl mx-auto;
+            
+} 

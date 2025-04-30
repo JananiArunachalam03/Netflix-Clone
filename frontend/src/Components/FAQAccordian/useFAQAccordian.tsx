@@ -1,34 +1,17 @@
-import React from "react";
-import { Plus, X } from "lucide-react";
-import faqData from "./FAQItem";
-import useFAQAccordion from "../useFAQAccordion"; 
-import { FAQItem } from "./IFAQItem";
+import { useState } from "react";
 
-const FAQAccordion: React.FC = () => {
-  const { activeIndex, handleButtonClick } = useFAQAccordion(); 
+const useFAQAccordion = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  return (
-    <div className="faq-container">
-      <h2 className="faq-title">Frequently Asked Questions</h2>
-      {faqData.map((item: FAQItem, index: number) => (
-        <div key={index} className="faq-key">
-          <button
-            onClick={() => handleButtonClick(index)} 
-            className="faq-button"
-          >
-            {item.question}
-            {activeIndex === index ? <X size={28} /> : <Plus size={28} />}
-          </button>
+  const toggleIndex = (index: number) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
 
-          {activeIndex === index && (
-            <div className="faq-active-index">
-              {item.answer}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
+  const handleButtonClick = (index: number) => {
+    toggleIndex(index); 
+  };
+
+  return { activeIndex, handleButtonClick };
 };
 
-export default FAQAccordion;
+export default useFAQAccordion;

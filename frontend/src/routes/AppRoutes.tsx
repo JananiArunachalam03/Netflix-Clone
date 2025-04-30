@@ -1,9 +1,9 @@
-import React from "react";
+
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "../pages/auth/Login";
-import Landing from "../pages/LandingPage";
-import Register from "../pages/auth/Register";
-import Home from "../pages/Home";
+import Login from "../pages/auth/Login/Login";
+import Landing from "../pages/LandingPage/LandingPage";
+import Register from "../pages/auth/Register/Register";
+import Home from "../pages/Home/Home";
 
 
 function AppRoutes() {
